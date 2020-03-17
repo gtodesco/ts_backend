@@ -11,6 +11,11 @@ class Impedimento extends Model {
         })
     }
 
+    static associate(models) {
+        this.belongsTo(models.Pessoa, {foreignKey: 'pessoa_id', as: 'pessoa'});
+        this.belongsTo(models.Sprint, {foreignKey: 'sprint_id', as: 'sprint'});
+    }
+
 }
 
 module.exports = Impedimento;

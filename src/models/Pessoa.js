@@ -16,6 +16,12 @@ class Pessoa extends Model {
         })
     }
 
+    static associate(models) {
+        this.belongsToMany(models.Equipe, {foreignKey: 'pessoa_id', through: 'equipes_pessoas', as: 'equipes'});
+        this.belongsToMany(models.Atividade, {foreignKey: 'pessoa_id', through: 'pessoas_atividades', as: 'atividades'});
+        this.hasMany(models.Impedimento, {foreignKey: 'pessoa_id', as: 'impedimentos'});
+    }
+
 }
 
 module.exports = Pessoa;

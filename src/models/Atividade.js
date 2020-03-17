@@ -13,6 +13,14 @@ class Atividade extends Model {
         })
     }
 
+    static associate(models) {
+        this.belongsTo(models.Sprint, {foreignKey: 'sprint_id', as: 'sprint'});
+        this.belongsToMany(models.Pessoa, {foreignKey: 'atividade_id', through: 'pessoas_atividades', as: 'pessoas'});
+        this.hasOne(models.Status, {foreignKey: 'status_id', as: 'status'});
+        this.hasOne(models.TipoAtividade, {foreignKey: 'tipo_atividade_id', as: 'tipo_atividade'});
+        this.hasMany(models.Observacao, {foreignKey: 'atividade_id', as: 'observacoes'});
+    }
+
 }
 
 module.exports = Atividade;
