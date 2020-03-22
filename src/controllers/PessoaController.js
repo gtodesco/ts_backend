@@ -19,7 +19,7 @@ module.exports = {
             senha
         } = req.body;
 
-        const pessoa = await User.create({
+        const pessoa = await Pessoa.create({
             nome,
             email,
             dt_nascimento,

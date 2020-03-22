@@ -6,7 +6,7 @@ class Retrospectiva extends Model {
         super.init({
             start: DataTypes.STRING,
             stop: DataTypes.STRING,
-            continue: DataTypes.STRING,
+            continuar: DataTypes.STRING,
         }, {
             sequelize
         })
