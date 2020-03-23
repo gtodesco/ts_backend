@@ -8,7 +8,7 @@ module.exports = {
         return res.json(equipes);
     },
 
-    async cadastrarEquipe(req, res) {
+    async criarEquipe(req, res) {
         const {
             nome,
             dt_ativacao,
@@ -25,5 +25,43 @@ module.exports = {
 
         return res.json(equipe);
     },
+
+    async alterarEquipe(req, res) {
+
+        const {
+            id,
+            nome,
+            dt_ativacao,
+            dt_desativacao,
+            sn_ativa
+        } = req.body;
+
+        const newEquipe = Equipe.update({
+            nome,
+            dt_ativacao,
+            dt_desativacao,
+            sn_ativa
+        }
+        ,{
+            where: { id }
+        });
+
+        return res.json(newEquipe);
+    },
+
+    async removerEquipe(req, res) {
+        try {
+            const{ id } = req.body;
+
+            Equipe.destroy({
+                where: { id }
+            });
+    
+            return res.json(true);
+
+        } catch(e) {
+            return res.json(false);
+        }
+    }
 
 };
