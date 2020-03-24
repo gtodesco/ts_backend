@@ -9,44 +9,66 @@ module.exports = {
     },
 
     async criarEquipe(req, res) {
-        const {
-            nome,
-            dt_ativacao,
-            dt_desativacao,
-            sn_ativa
-        } = req.body;
+        try {
+            const {
+                nome,
+                dt_ativacao,
+                dt_desativacao,
+                sn_ativa
+            } = req.body;
+    
+            const equipe = await Equipe.create({
+                nome,
+                dt_ativacao,
+                dt_desativacao,
+                sn_ativa
+            });
+    
+            return res.json({
+                msg: 'Equipe cadastrada com sucesso!', 
+                status: true
+            });
 
-        const equipe = await Equipe.create({
-            nome,
-            dt_ativacao,
-            dt_desativacao,
-            sn_ativa
-        });
-
-        return res.json(equipe);
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível cadastrar a equipe.',
+                status: false
+            });
+        }
     },
 
     async alterarEquipe(req, res) {
 
-        const {
-            id,
-            nome,
-            dt_ativacao,
-            dt_desativacao,
-            sn_ativa
-        } = req.body;
+        try {
+            const {
+                id,
+                nome,
+                dt_ativacao,
+                dt_desativacao,
+                sn_ativa
+            } = req.body;
+    
+            const newEquipe = Equipe.update({
+                nome,
+                dt_ativacao,
+                dt_desativacao,
+                sn_ativa
+            },
+            {
+                where: { id }
+            });
+    
+            return res.json({
+                msg: 'Equipe editada com sucesso!', 
+                status: true
+            });
 
-        const newEquipe = Equipe.update({
-            nome,
-            dt_ativacao,
-            dt_desativacao,
-            sn_ativa
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível editar a equipe.',
+                status: false
+            });
         }
-        ,{
-            where: { id }
-        });
-
-        return res.json(newEquipe);
     },
 
     async removerEquipe(req, res) {
@@ -57,10 +79,16 @@ module.exports = {
                 where: { id }
             });
     
-            return res.json(true);
+            return res.json({
+                msg: 'Equipe excluída com sucesso!', 
+                status:true
+            });
 
         } catch(e) {
-            return res.json(false);
+            return res.json({
+                msg: 'Não foi possível excluir a equipe.',
+                status: false
+            });
         }
     }
 
