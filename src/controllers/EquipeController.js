@@ -1,4 +1,5 @@
 const Equipe = require('../models/Equipe');
+const Pessoa = require('../models/Pessoa');
 
 module.exports = {
 
@@ -87,6 +88,74 @@ module.exports = {
         } catch(e) {
             return res.json({
                 msg: 'Não foi possível excluir a equipe.',
+                status: false
+            });
+        }
+    },
+
+    async addPessoaEquipe(req, res) {
+        try {
+            const {
+                equipe_id,
+                pessoa_id
+            } = req.body;
+    
+            const equipe = await Equipe.findByPk(equipe_id);
+            const pessoa = await Pessoa.findByPk(pessoa_id);
+    
+            await equipe.addPessoa(pessoa);
+    
+            return res.json({
+                msg: "Pessoa adicionada com sucesso!",
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível adicionar a pessoa à equipe.',
+                status: false
+            });
+        }
+    },
+
+    async getPessoasEquipes(req, res) {
+        const {
+            equipe_id
+        } = req.body;
+
+        const equipe = await Equipe.findByPk(equipe_id, {
+            include: {
+                association: 'pessoas',
+                attributes: ['id', 'nome'],
+                through: { 
+                    attributes: []
+                }                    
+            }
+        });
+
+        return res.json(equipe);
+    },
+
+    async removePessoaEquipe(req, res) {
+        try {
+            const {
+                equipe_id,
+                pessoa_id
+            } = req.body;
+
+            const equipe = await Equipe.findByPk(equipe_id);
+            const pessoa = await Pessoa.findByPk(pessoa_id);
+    
+            await equipe.removePessoa(pessoa);
+    
+            return res.json({
+                msg: "Pessoa removida com sucesso!",
+                status: true
+            });
+
+        } catch (e) {
+            return res.json({
+                msg: 'Não foi possível remover a pessoa da equipe.',
                 status: false
             });
         }

@@ -8,6 +8,9 @@ routes.get('/equipe', EquipeController.getEquipes);
 routes.post('/equipe', EquipeController.criarEquipe);
 routes.put('/equipe', EquipeController.alterarEquipe);
 routes.delete('/equipe', EquipeController.removerEquipe);
+routes.post('/equipe/add-pessoa', EquipeController.addPessoaEquipe);
+routes.get('/equipe/get-equipe-pessoas', EquipeController.getPessoasEquipes);
+routes.delete('/equipe/remover-pessoa', EquipeController.removePessoaEquipe);
 
 routes.get('/pessoa', PessoaController.getPessoas);
 routes.post('/pessoa', PessoaController.criarPessoa);
