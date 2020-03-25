@@ -154,6 +154,24 @@ module.exports = {
                 status: false
             });
         }
-    }
+    },
+
+    async getEquipesPessoa(req, res) {
+        const {
+            pessoa_id
+        } = req.body;
+
+        const pessoa = await Pessoa.findByPk(pessoa_id, {
+            include: {
+                association: 'equipes',
+                attributes: ['id', 'nome'],
+                through: { 
+                    attributes: []
+                }                    
+            }
+        });
+
+        return res.json(pessoa);
+    },
 
 };

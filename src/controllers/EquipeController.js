@@ -118,7 +118,7 @@ module.exports = {
         }
     },
 
-    async getPessoasEquipes(req, res) {
+    async getPessoasEquipe(req, res) {
         const {
             equipe_id
         } = req.body;
