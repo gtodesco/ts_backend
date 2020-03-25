@@ -1,6 +1,7 @@
 const express = require('express');
 const EquipeController = require('./controllers/EquipeController');
 const PessoaController = require('./controllers/PessoaController');
+const SprintController = require('./controllers/SprintController');
 
 const routes = express.Router();
 
@@ -18,6 +19,11 @@ routes.put('/pessoa', PessoaController.alterarPessoa);
 routes.delete('/pessoa', PessoaController.removerPessoa);
 routes.get('/pessoa/verifica-login', PessoaController.verificaLoginUnico);
 routes.get('/pessoa/get-equipes-pessoa', PessoaController.getEquipesPessoa);
+
+routes.get('/sprint', SprintController.getSprints);
+routes.post('/sprint', SprintController.criarSprint);
+routes.put('/sprint', SprintController.alterarSprint);
+routes.delete('/sprint', SprintController.removerSprint);
 
 // Método teste
 routes.get('/', (req, res) => {

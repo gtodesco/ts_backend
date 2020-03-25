@@ -49,7 +49,7 @@ module.exports = {
                 sn_ativa
             } = req.body;
     
-            const newEquipe = Equipe.update({
+            const newEquipe = await Equipe.update({
                 nome,
                 dt_ativacao,
                 dt_desativacao,
@@ -76,7 +76,7 @@ module.exports = {
         try {
             const{ id } = req.body;
 
-            Equipe.destroy({
+            await Equipe.destroy({
                 where: { id }
             });
     

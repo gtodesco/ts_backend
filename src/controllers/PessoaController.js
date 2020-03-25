@@ -79,7 +79,7 @@ module.exports = {
                 senha
             } = req.body;
     
-            const newPessoa = Pessoa.update({
+            const newPessoa = await Pessoa.update({
                 nome,
                 email,
                 dt_nascimento,
@@ -109,7 +109,7 @@ module.exports = {
         try {
             const{ id } = req.body;
 
-            Pessoa.destroy({
+            await Pessoa.destroy({
                 where: { id }
             });
     
