@@ -5,7 +5,7 @@ class Impedimento extends Model {
     static init(sequelize) {
         super.init({
             descricao: DataTypes.STRING,
-            horas: DataTypes.DATE,
+            horas: DataTypes.TIME,
         }, {
             sequelize
         })

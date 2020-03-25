@@ -6,8 +6,8 @@ class Atividade extends Model {
         super.init({
             titulo: DataTypes.STRING,
             descricao: DataTypes.STRING,
-            horas_previsto: DataTypes.DATE,
-            horas_realizado: DataTypes.DATE,
+            horas_previsto: DataTypes.TIME,
+            horas_realizado: DataTypes.TIME,
         }, {
             sequelize
         })
