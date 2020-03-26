@@ -32,6 +32,7 @@ routes.get('/atividade/get-atividade-sprint', AtividadeController.getAtividadesS
 routes.post('/atividade', AtividadeController.criarAtividade);
 routes.put('/atividade', AtividadeController.alterarAtividade);
 routes.delete('/atividade', AtividadeController.removerAtividade);
+routes.put('/atividade/add-atividades-sprint', AtividadeController.addAtividadesSprint);
 
 // Método teste
 routes.get('/', (req, res) => {

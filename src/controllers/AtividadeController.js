@@ -124,4 +124,30 @@ module.exports = {
         }
     },
 
+    async addAtividadesSprint(req, res) {
+        try {
+            const { sprint_id, arrAtividades } = req.body;
+
+            arrAtividades.forEach(async (id) => {
+                await Atividade.update({
+                    sprint_id,
+                },
+                {
+                    where: { id }
+                });
+            });
+    
+            return res.json({
+                msg: 'Atividades vinculadas à sprint!', 
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível vincular as atividades à sprint.', 
+                status: false
+            });
+        }
+    },
+
 };
