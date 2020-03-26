@@ -1,39 +1,127 @@
 const Atividade = require('../models/Atividade');
-const Equipe = require('../models/Equipe');
 
 module.exports = {
 
-    async getAtividades(req, res) {
-        const atividades = await Atividade.findAll();
+    async getAtividadesEquipe(req, res) {
+        const { equipe_id } = req.body;
+
+        const atividades = await Atividade.findAll({
+            where: { equipe_id }
+        });
 
         return res.json(atividades);
     },
 
-    async cadastrarAtividade(req, res) {
-        const {
-            titulo,
-            descricao,
-            horas_previsto,
-            horas_realizado,
-            equipe_id
-        } = req.body;
+    async getAtividadesEquipeSemSprint(req, res) {
+        const { equipe_id } = req.body;
 
-        const equipe = await Equipe.findByPk(equipe_id);
-
-        if (!equipe) {
-            return res.status(400).json({ error: 'Equipe não existe.' });
-        }
-
-        const atividade = await Atividade.create({
-            titulo,
-            descricao,
-            horas_previsto,
-            horas_realizado
+        const atividades = await Atividade.findAll({
+            where: { equipe_id, sprint_id: null }
         });
 
-        await Equipe.addAtividade(atividade);
+        return res.json(atividades);
+    },
 
-        return res.json(atividade);
+    async getAtividadesSprint(req, res) {
+        const { sprint_id } = req.body;
+
+        const atividades = await Atividade.findAll({
+            where: { sprint_id }
+        });
+
+        return res.json(atividades);
+    },
+
+    async criarAtividade(req, res) {
+        try {
+            const {
+                equipe_id,
+                sprint_id,
+                titulo,
+                descricao,
+                horas_previsto,
+                horas_realizado
+            } = req.body;
+    
+            const atividade = await Atividade.create({
+                equipe_id,
+                sprint_id,
+                titulo,
+                descricao,
+                horas_previsto,
+                horas_realizado
+            });
+    
+            return res.json({
+                msg: 'Atividade cadastrada com sucesso!', 
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível cadastrar a atividade.',
+                status: false
+            });
+        }
+    },
+
+    async alterarAtividade(req, res) {
+
+        try {
+            const {
+                id,
+                equipe_id,
+                sprint_id,
+                titulo,
+                descricao,
+                horas_previsto,
+                horas_realizado
+            } = req.body;
+    
+            const newAtividade = await Atividade.update({
+                equipe_id,
+                sprint_id,
+                titulo,
+                descricao,
+                horas_previsto,
+                horas_realizado
+            },
+            {
+                where: { id }
+            });
+    
+            return res.json({
+                msg: 'Atividade editada com sucesso!', 
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível editar a atividade.',
+                status: false
+            });
+        }
+    },
+
+    async removerAtividade(req, res) {
+        try {
+            const{ id } = req.body;
+
+            await Atividade.destroy({
+                where: { id }
+            });
+    
+            return res.json({
+                msg: 'Atividade excluída com sucesso!', 
+                status:true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível excluir a atividade.',
+                status: false
+            });
+        }
     },
 
 };
