@@ -174,4 +174,22 @@ module.exports = {
         return res.json(pessoa);
     },
 
+    async getAtividadesPessoa(req, res) {
+        const {
+            pessoa_id
+        } = req.body;
+
+        const pessoa = await Pessoa.findByPk(pessoa_id, {
+            include: {
+                association: 'atividades',
+                attributes: ['id', 'titulo'],
+                through: { 
+                    attributes: []
+                }                    
+            }
+        });
+
+        return res.json(pessoa);
+    },
+
 };

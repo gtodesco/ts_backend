@@ -1,4 +1,5 @@
 const Atividade = require('../models/Atividade');
+const Pessoa = require('../models/Pessoa');
 
 module.exports = {
 
@@ -149,5 +150,73 @@ module.exports = {
             });
         }
     },
+
+    async addPessoaAtividade(req, res) {
+        try {
+            const {
+                atividade_id,
+                pessoa_id
+            } = req.body;
+    
+            const atividade = await Atividade.findByPk(atividade_id);
+            const pessoa = await Pessoa.findByPk(pessoa_id);
+    
+            await atividade.addPessoa(pessoa);
+    
+            return res.json({
+                msg: "Pessoa adicionada com sucesso!",
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível adicionar a pessoa à atividade.',
+                status: false
+            });
+        }
+    },
+
+    async getPessoasAtividade(req, res) {
+        const {
+            atividade_id
+        } = req.body;
+
+        const atividade = await Atividade.findByPk(atividade_id, {
+            include: {
+                association: 'pessoas',
+                attributes: ['id', 'nome'],
+                through: { 
+                    attributes: []
+                }                    
+            }
+        });
+
+        return res.json(atividade);
+    },
+
+    async removePessoaAtividade(req, res) {
+        try {
+            const {
+                atividade_id,
+                pessoa_id
+            } = req.body;
+
+            const atividade = await Atividade.findByPk(atividade_id);
+            const pessoa = await Pessoa.findByPk(pessoa_id);
+    
+            await atividade.removePessoa(pessoa);
+    
+            return res.json({
+                msg: "Pessoa removida com sucesso!",
+                status: true
+            });
+
+        } catch (e) {
+            return res.json({
+                msg: 'Não foi possível remover a pessoa da atividade.',
+                status: false
+            });
+        }
+    }
 
 };

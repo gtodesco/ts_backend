@@ -20,6 +20,7 @@ routes.put('/pessoa', PessoaController.alterarPessoa);
 routes.delete('/pessoa', PessoaController.removerPessoa);
 routes.get('/pessoa/verifica-login', PessoaController.verificaLoginUnico);
 routes.get('/pessoa/get-equipes-pessoa', PessoaController.getEquipesPessoa);
+routes.get('/pessoa/get-atividades-pessoa', PessoaController.getAtividadesPessoa);
 
 routes.get('/sprint', SprintController.getSprints);
 routes.post('/sprint', SprintController.criarSprint);
@@ -33,6 +34,9 @@ routes.post('/atividade', AtividadeController.criarAtividade);
 routes.put('/atividade', AtividadeController.alterarAtividade);
 routes.delete('/atividade', AtividadeController.removerAtividade);
 routes.put('/atividade/add-atividades-sprint', AtividadeController.addAtividadesSprint);
+routes.post('/atividade/add-pessoa', AtividadeController.addPessoaAtividade);
+routes.get('/atividade/get-pessoas-atividade', AtividadeController.getPessoasAtividade);
+routes.delete('/atividade/remover-pessoa', AtividadeController.removePessoaAtividade);
 
 // Método teste
 routes.get('/', (req, res) => {
