@@ -1,5 +1,4 @@
 const Sprint = require('../models/Sprint');
-const Equipe = require('../models/Equipe');
 
 module.exports = {
 

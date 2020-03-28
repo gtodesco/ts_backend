@@ -12,6 +12,10 @@ class Retrospectiva extends Model {
         })
     }
 
+    static associate(models) {
+        this.belongsTo(models.Sprint, {foreignKey: 'sprint_id', as: 'sprint'});
+    }
+
 }
 
 module.exports = Retrospectiva;

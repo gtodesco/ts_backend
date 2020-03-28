@@ -2,19 +2,12 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('impedimentos', {
+    return queryInterface.createTable('retrospectivas', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
-      },
-      pessoa_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'pessoas', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
       sprint_id: {
         type: Sequelize.INTEGER,
@@ -23,13 +16,17 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      descricao: {
+      start: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
-      horas: {
-        type: Sequelize.TIME,
-        allowNull: false
+      stop: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      continuar: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
       created_at: { 
         type: Sequelize.DATE,
@@ -43,6 +40,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('impedimentos');
+    return queryInterface.dropTable('retrospectivas');
   }
 };

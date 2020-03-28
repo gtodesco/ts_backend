@@ -4,6 +4,7 @@ const PessoaController = require('./controllers/PessoaController');
 const SprintController = require('./controllers/SprintController');
 const AtividadeController = require('./controllers/AtividadeController');
 const ImpedimentoController = require('./controllers/ImpedimentoController');
+const RetrospectivaController = require('./controllers/RetrospectivaController');
 
 const routes = express.Router();
 
@@ -44,6 +45,11 @@ routes.get('/impedimento/get-impedimentos-pessoa', ImpedimentoController.getImpe
 routes.post('/impedimento', ImpedimentoController.criarImpedimento);
 routes.put('/impedimento', ImpedimentoController.alterarImpedimento);
 routes.delete('/impedimento', ImpedimentoController.removerImpedimento);
+
+routes.get('/retrospectiva', RetrospectivaController.getRetrospectivasSprint);
+routes.post('/retrospectiva', RetrospectivaController.criarRetrospectiva);
+routes.put('/retrospectiva', RetrospectivaController.alterarRetrospectiva);
+routes.delete('/retrospectiva', RetrospectivaController.removerRetrospectiva);
 
 // Método teste
 routes.get('/', (req, res) => {

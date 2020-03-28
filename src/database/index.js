@@ -31,6 +31,7 @@ Atividade.associate(connection.models);
 Equipe.associate(connection.models);
 Impedimento.associate(connection.models);
 Pessoa.associate(connection.models);
+Retrospectiva.associate(connection.models);
 Sprint.associate(connection.models);
 
 module.exports = connection;

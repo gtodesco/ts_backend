@@ -1,6 +1,4 @@
 const Impedimento = require('../models/Impedimento');
-const Pessoa = require('../models/Pessoa');
-const Sprint = require('../models/Sprint');
 
 module.exports = {
 

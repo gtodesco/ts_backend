@@ -17,7 +17,7 @@ class Sprint extends Model {
         this.belongsTo(models.Equipe, {foreignKey: 'equipe_id', as: 'equipe'});
         this.hasMany(models.Atividade, {foreignKey: 'sprint_id', as: 'atividades'});
         this.hasMany(models.Impedimento, {foreignKey: 'sprint_id', as: 'impedimentos'});
-        this.hasOne(models.Retrospectiva, {foreignKey: 'retrospectiva_id', as: 'retrospectiva'});
+        this.hasOne(models.Retrospectiva, {foreignKey: 'sprint_id', as: 'retrospectiva'});
     }
 
 }
