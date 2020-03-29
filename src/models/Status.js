@@ -10,6 +10,10 @@ class Status extends Model {
         })
     }
 
+    static associate(models) {
+        this.hasMany(models.Atividade, {foreignKey: 'status_id', as: 'atividades'});
+    }
+
 }
 
 module.exports = Status;
