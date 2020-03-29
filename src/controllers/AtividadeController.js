@@ -7,6 +7,7 @@ module.exports = {
         const { equipe_id } = req.body;
 
         const atividades = await Atividade.findAll({
+            include: { association: 'status' },
             where: { equipe_id }
         });
 
@@ -17,6 +18,7 @@ module.exports = {
         const { equipe_id } = req.body;
 
         const atividades = await Atividade.findAll({
+            include: { association: 'status' },
             where: { equipe_id, sprint_id: null }
         });
 
@@ -27,6 +29,7 @@ module.exports = {
         const { sprint_id } = req.body;
 
         const atividades = await Atividade.findAll({
+            include: { association: 'status' },
             where: { sprint_id }
         });
 
@@ -38,6 +41,8 @@ module.exports = {
             const {
                 equipe_id,
                 sprint_id,
+                tipo_id,
+                status_id,
                 titulo,
                 descricao,
                 horas_previsto,
@@ -47,6 +52,8 @@ module.exports = {
             const atividade = await Atividade.create({
                 equipe_id,
                 sprint_id,
+                tipo_id,
+                status_id,
                 titulo,
                 descricao,
                 horas_previsto,
@@ -73,6 +80,8 @@ module.exports = {
                 id,
                 equipe_id,
                 sprint_id,
+                tipo_id,
+                status_id,
                 titulo,
                 descricao,
                 horas_previsto,
@@ -82,6 +91,8 @@ module.exports = {
             const newAtividade = await Atividade.update({
                 equipe_id,
                 sprint_id,
+                tipo_id,
+                status_id,
                 titulo,
                 descricao,
                 horas_previsto,
