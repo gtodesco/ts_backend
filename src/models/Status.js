@@ -6,7 +6,8 @@ class Status extends Model {
         super.init({
             descricao: DataTypes.STRING,
         }, {
-            sequelize
+            sequelize,
+            tableName: 'status'
         })
     }
 
