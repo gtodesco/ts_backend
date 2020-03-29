@@ -6,8 +6,13 @@ class Observacao extends Model {
         super.init({
             descricao: DataTypes.STRING,
         }, {
-            sequelize
+            sequelize,
+            tableName: 'observacoes'
         })
+    }
+
+    static associate(models) {
+        this.belongsTo(models.Atividade, {foreignKey: 'atividade_id', as: 'atividade'});
     }
 
 }
