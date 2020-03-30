@@ -15,9 +15,9 @@ routes.get('/equipe', EquipeController.getEquipes);
 routes.post('/equipe', EquipeController.criarEquipe);
 routes.put('/equipe', EquipeController.alterarEquipe);
 routes.delete('/equipe', EquipeController.removerEquipe);
-routes.post('/equipe/add-pessoa', EquipeController.addPessoaEquipe);
-routes.get('/equipe/get-pessoas-equipe', EquipeController.getPessoasEquipe);
-routes.delete('/equipe/remover-pessoa', EquipeController.removePessoaEquipe);
+routes.post('/equipe/pessoa', EquipeController.addPessoaEquipe);
+routes.get('/equipe/pessoa', EquipeController.getPessoasEquipe);
+routes.delete('/equipe/pessoa', EquipeController.removePessoaEquipe);
 
 routes.get('/pessoa', PessoaController.getPessoas);
 routes.post('/pessoa', PessoaController.criarPessoa);
@@ -38,10 +38,10 @@ routes.get('/atividade/get-atividade-sprint', AtividadeController.getAtividadesS
 routes.post('/atividade', AtividadeController.criarAtividade);
 routes.put('/atividade', AtividadeController.alterarAtividade);
 routes.delete('/atividade', AtividadeController.removerAtividade);
-routes.put('/atividade/add-atividades-sprint', AtividadeController.addAtividadesSprint);
-routes.post('/atividade/add-pessoa', AtividadeController.addPessoaAtividade);
-routes.get('/atividade/get-pessoas-atividade', AtividadeController.getPessoasAtividade);
-routes.delete('/atividade/remover-pessoa', AtividadeController.removePessoaAtividade);
+routes.post('/atividade/add-atividades-sprint', AtividadeController.addAtividadesSprint);
+routes.post('/atividade/pessoa', AtividadeController.addPessoaAtividade);
+routes.get('/atividade/pessoa', AtividadeController.getPessoasAtividade);
+routes.delete('/atividade/pessoa', AtividadeController.removePessoaAtividade);
 
 routes.get('/impedimento/get-impedimentos-sprint', ImpedimentoController.getImpedimentosSprint);
 routes.get('/impedimento/get-impedimentos-pessoa', ImpedimentoController.getImpedimentosPessoa);
