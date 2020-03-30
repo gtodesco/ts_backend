@@ -17,7 +17,7 @@ class Atividade extends Model {
         this.belongsTo(models.Sprint, {foreignKey: 'sprint_id', as: 'sprint'});
         this.belongsTo(models.Equipe, {foreignKey: 'equipe_id', as: 'equipe'});
         this.belongsTo(models.Status, {foreignKey: 'status_id', as: 'status'});
-        this.belongsTo(models.TipoAtividade, {foreignKey: 'tipo_id', as: 'tipo_atividade'});
+        this.belongsTo(models.TipoAtividade, {foreignKey: 'tipo_id', as: 'tipos_atividade'});
         this.belongsToMany(models.Pessoa, {foreignKey: 'atividade_id', through: 'pessoas_atividades', as: 'pessoas'});
         this.hasMany(models.Observacao, {foreignKey: 'atividade_id', as: 'observacoes'});
     }
