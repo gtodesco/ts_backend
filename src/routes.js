@@ -23,7 +23,7 @@ routes.get('/pessoa', PessoaController.getPessoas);
 routes.post('/pessoa', PessoaController.criarPessoa);
 routes.put('/pessoa', PessoaController.alterarPessoa);
 routes.delete('/pessoa', PessoaController.removerPessoa);
-routes.get('/pessoa/verifica-login', PessoaController.verificaLoginUnico);
+routes.get('/pessoa/verifica-email', PessoaController.verificaEmailUnico);
 routes.get('/pessoa/get-equipes-pessoa', PessoaController.getEquipesPessoa);
 routes.get('/pessoa/get-atividades-pessoa', PessoaController.getAtividadesPessoa);
 
