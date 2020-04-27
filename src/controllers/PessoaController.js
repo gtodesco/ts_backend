@@ -26,7 +26,9 @@ module.exports = {
             const {
                 nome,
                 email,
-                senha
+                senha,
+                sn_verificado,
+                cd_amazon
             } = req.body;
             
             const emailRepetido = await verificaEmailRepetido(email);
@@ -41,7 +43,9 @@ module.exports = {
             const pessoa = await Pessoa.create({
                 nome,
                 email,
-                senha
+                senha,
+                sn_verificado,
+                cd_amazon
             });
     
             return res.json({
@@ -64,13 +68,17 @@ module.exports = {
                 id,
                 nome,
                 email,
-                senha
+                senha,
+                sn_verificado,
+                cd_amazon
             } = req.body;
     
             const newPessoa = await Pessoa.update({
                 nome,
                 email,
-                senha
+                senha,
+                sn_verificado,
+                cd_amazon
             },
             {
                 where: { id }

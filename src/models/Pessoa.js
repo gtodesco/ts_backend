@@ -6,7 +6,9 @@ class Pessoa extends Model {
         super.init({
             nome: DataTypes.STRING,
             email: DataTypes.STRING,
-            senha: DataTypes.STRING
+            senha: DataTypes.STRING,
+            sn_verificado: DataTypes.BOOLEAN,
+            cd_amazon: DataTypes.STRING
         }, {
             sequelize
         })

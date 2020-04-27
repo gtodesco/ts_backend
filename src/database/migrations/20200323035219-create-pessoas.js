@@ -21,6 +21,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      sn_verificado: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
+      cd_amazon: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       created_at: { 
         type: Sequelize.DATE,
         allowNull: false,
