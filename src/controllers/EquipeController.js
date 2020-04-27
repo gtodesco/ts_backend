@@ -119,7 +119,7 @@ module.exports = {
         }
     },
 
-    alterarPessoasEquipe(req, res) {
+    async alterarPessoasEquipe(req, res) {
         try {
             const {
                 equipe_id,
