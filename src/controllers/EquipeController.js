@@ -97,13 +97,14 @@ module.exports = {
         try {
             const {
                 equipe_id,
-                pessoa_id
+                pessoa_id,
+                sn_scrummaster
             } = req.body;
     
             const equipe = await Equipe.findByPk(equipe_id);
             const pessoa = await Pessoa.findByPk(pessoa_id);
     
-            await equipe.addPessoa(pessoa);
+            await equipe.addPessoa(pessoa, {sn_scrummaster});
     
             return res.json({
                 msg: "Pessoa adicionada com sucesso!",
@@ -116,6 +117,32 @@ module.exports = {
                 status: false
             });
         }
+    },
+
+    alterarPessoasEquipe(req, res) {
+        try {
+            const {
+                equipe_id,
+                pessoa_id,
+                sn_scrummaster
+            } = req.body;
+    
+            const equipe = await Equipe.findByPk(equipe_id);
+            const pessoa = await Pessoa.findByPk(pessoa_id);
+    
+            await equipe.setPessoa(pessoa, {sn_scrummaster});
+    
+            return res.json({
+                msg: "Pessoa alterada para Scrum-Master com sucesso!",
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível alterar.',
+                status: false
+            });
+        } 
     },
 
     async getPessoasEquipe(req, res) {
