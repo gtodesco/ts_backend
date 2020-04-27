@@ -17,22 +17,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      dt_nascimento: {
-        type: Sequelize.DATEONLY,
-        allowNull: false
-      },
-      sn_scrummaster: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-      },
-      sn_empresa: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-      },
-      login: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       senha: {
         type: Sequelize.STRING,
         allowNull: false

@@ -26,10 +26,6 @@ module.exports = {
             const {
                 nome,
                 email,
-                dt_nascimento,
-                sn_scrummaster,
-                sn_empresa,
-                login,
                 senha
             } = req.body;
             
@@ -45,10 +41,6 @@ module.exports = {
             const pessoa = await Pessoa.create({
                 nome,
                 email,
-                dt_nascimento,
-                sn_scrummaster,
-                sn_empresa,
-                login,
                 senha
             });
     
@@ -72,20 +64,12 @@ module.exports = {
                 id,
                 nome,
                 email,
-                dt_nascimento,
-                sn_scrummaster,
-                sn_empresa,
-                login,
                 senha
             } = req.body;
     
             const newPessoa = await Pessoa.update({
                 nome,
                 email,
-                dt_nascimento,
-                sn_scrummaster,
-                sn_empresa,
-                login,
                 senha
             },
             {
