@@ -21,6 +21,26 @@ module.exports = {
         return res.json(pessoas);
     },
 
+    async getPessoaByEmail(req, res) {
+        try {
+            const {
+                email
+            } = req.body;
+    
+            const pessoa = await Pessoa.findAll({
+                where: { email }
+            });
+    
+            return res.json(pessoa);
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível retornar a pessoa.',
+                status: false
+            });
+        }
+    },
+
     async criarPessoa(req, res) {
         try {
             const {
