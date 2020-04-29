@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const EquipesPessoas = require('./EquipesPessoas');
 
 class Equipe extends Model {
     
@@ -14,7 +15,7 @@ class Equipe extends Model {
     }
 
     static associate(models) {
-        this.belongsToMany(models.Pessoa, {foreignKey: 'equipe_id', through: 'equipes_pessoas', as: 'pessoas'});
+        this.belongsToMany(models.Pessoa, {foreignKey: 'equipe_id', through: EquipesPessoas, as: 'pessoas'});
         this.hasMany(models.Sprint, {foreignKey: 'equipe_id', as: 'sprints'});
         this.hasMany(models.Atividade, {foreignKey: 'equipe_id', as: 'atividades'});
     }

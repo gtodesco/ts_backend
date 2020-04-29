@@ -2,15 +2,16 @@ const Sequelize = require('sequelize');
 const dbConfig = require('../config/database');
 
 // Importa models
-const Atividade     = require('../models/Atividade');
-const Equipe        = require('../models/Equipe');
-const Impedimento   = require('../models/Impedimento');
-const Observacao    = require('../models/Observacao');
-const Pessoa        = require('../models/Pessoa');
-const Retrospectiva = require('../models/Retrospectiva');
-const Sprint        = require('../models/Sprint');
-const Status        = require('../models/Status');
-const TipoAtividade = require('../models/TipoAtividade');
+const Atividade      = require('../models/Atividade');
+const Equipe         = require('../models/Equipe');
+const EquipesPessoas = require('../models/EquipesPessoas');
+const Impedimento    = require('../models/Impedimento');
+const Observacao     = require('../models/Observacao');
+const Pessoa         = require('../models/Pessoa');
+const Retrospectiva  = require('../models/Retrospectiva');
+const Sprint         = require('../models/Sprint');
+const Status         = require('../models/Status');
+const TipoAtividade  = require('../models/TipoAtividade');
 
 // Inicia conexão
 const connection = new Sequelize(dbConfig);
@@ -18,6 +19,7 @@ const connection = new Sequelize(dbConfig);
 // Inicia models
 Atividade.init(connection);
 Equipe.init(connection);
+EquipesPessoas.init(connection);
 Impedimento.init(connection);
 Observacao.init(connection);
 Pessoa.init(connection);

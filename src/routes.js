@@ -16,7 +16,6 @@ routes.post('/equipe', EquipeController.criarEquipe);
 routes.put('/equipe', EquipeController.alterarEquipe);
 routes.delete('/equipe', EquipeController.removerEquipe);
 routes.post('/equipe/pessoa', EquipeController.addPessoaEquipe);
-routes.put('/equipe/pessoa', EquipeController.alterarPessoasEquipe);
 routes.get('/equipe/pessoa', EquipeController.getPessoasEquipe);
 routes.delete('/equipe/pessoa', EquipeController.removePessoaEquipe);
 
