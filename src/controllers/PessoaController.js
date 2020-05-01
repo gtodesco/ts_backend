@@ -28,7 +28,14 @@ module.exports = {
             } = req.body;
     
             const pessoa = await Pessoa.findAll({
-                where: { email }
+                where: { email },
+                include: {
+                    association: 'equipes',
+                    through: { 
+                        as: 'equipes_pessoas',
+                        attributes: ['sn_scrummaster']
+                    }                    
+                }
             });
     
             return res.json(pessoa);
