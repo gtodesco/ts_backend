@@ -17,10 +17,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      senha: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       sn_verificado: {
         type: Sequelize.BOOLEAN,
         allowNull: false

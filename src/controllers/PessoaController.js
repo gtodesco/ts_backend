@@ -53,7 +53,6 @@ module.exports = {
             const {
                 nome,
                 email,
-                senha,
                 sn_verificado,
                 cd_amazon
             } = req.body;
@@ -70,7 +69,6 @@ module.exports = {
             const pessoa = await Pessoa.create({
                 nome,
                 email,
-                senha,
                 sn_verificado,
                 cd_amazon
             });
@@ -95,7 +93,6 @@ module.exports = {
                 id,
                 nome,
                 email,
-                senha,
                 sn_verificado,
                 cd_amazon
             } = req.body;
@@ -103,7 +100,6 @@ module.exports = {
             const newPessoa = await Pessoa.update({
                 nome,
                 email,
-                senha,
                 sn_verificado,
                 cd_amazon
             },
