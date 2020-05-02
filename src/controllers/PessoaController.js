@@ -120,6 +120,39 @@ module.exports = {
         }
     },
 
+    async alterarPessoaByEmail(req, res) {
+
+        try {
+            const {
+                nome,
+                email,
+                sn_verificado,
+                cd_amazon
+            } = req.body;
+    
+            const newPessoa = await Pessoa.update({
+                nome,
+                email,
+                sn_verificado,
+                cd_amazon
+            },
+            {
+                where: { email }
+            });
+    
+            return res.json({
+                msg: 'Pessoa editada com sucesso!', 
+                status: true
+            });
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível editar a pessoa.',
+                status: false
+            });
+        }
+    },
+
     async removerPessoa(req, res) {
         try {
             const{ id } = req.body;

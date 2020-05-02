@@ -22,6 +22,7 @@ routes.delete('/equipe/pessoa', EquipeController.removePessoaEquipe);
 routes.get('/pessoa', PessoaController.getPessoas);
 routes.post('/pessoa', PessoaController.criarPessoa);
 routes.put('/pessoa', PessoaController.alterarPessoa);
+routes.put('/pessoa-email', PessoaController.alterarPessoaByEmail);
 routes.delete('/pessoa', PessoaController.removerPessoa);
 routes.get('/pessoa/verifica-email', PessoaController.verificaEmailUnico);
 routes.get('/pessoa/get-equipes-pessoa', PessoaController.getEquipesPessoa);
