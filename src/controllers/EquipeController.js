@@ -15,16 +15,25 @@ module.exports = {
                 nome,
                 dt_ativacao,
                 dt_desativacao,
-                sn_ativa
+                sn_ativa,
+                cd_amazon
             } = req.body;
     
+            // Cria a equipe
             const equipe = await Equipe.create({
                 nome,
                 dt_ativacao,
                 dt_desativacao,
                 sn_ativa
             });
+            
+            // Procura a pessoa e vincula à equipe
+            const pessoa = await Pessoa.findAll({
+                where: { cd_amazon }
+            });
     
+            await equipe.addPessoa(pessoa, { through: { sn_scrummaster: true } });
+
             return res.json({
                 msg: 'Equipe cadastrada com sucesso!', 
                 status: true
