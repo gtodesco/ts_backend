@@ -205,21 +205,29 @@ module.exports = {
     },
 
     async getEquipesPessoa(req, res) {
-        const {
-            pessoa_id
-        } = req.body;
-
-        const pessoa = await Pessoa.findByPk(pessoa_id, {
-            include: {
-                association: 'equipes',
-                attributes: ['id', 'nome'],
-                through: { 
-                    attributes: []
-                }                    
-            }
-        });
-
-        return res.json(pessoa);
+        try {
+            const {
+                cd_amazon
+            } = req.query;
+    
+            const pessoa = await Pessoa.findAll({
+                include: {
+                    association: 'equipes',
+                    through: { 
+                        as: 'equipes_pessoas',
+                        attributes: ['sn_scrummaster']
+                    }                    
+                },
+                where: { cd_amazon }
+            });
+    
+            return res.json(pessoa);
+        } catch (e) {
+            return res.json({
+                msg: 'Não foi buscar as equipes.',
+                status: false
+            });
+        }
     },
 
     async getAtividadesPessoa(req, res) {
