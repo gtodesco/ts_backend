@@ -215,10 +215,13 @@ module.exports = {
                     association: 'equipes',
                     through: { 
                         as: 'equipes_pessoas',
-                        attributes: ['sn_scrummaster']
-                    }                    
+                        attributes: ['sn_scrummaster'],
+                    }             
                 },
-                where: { cd_amazon }
+                where: { cd_amazon },
+                order: [
+                    ['equipes', 'sn_ativa', 'DESC'],
+                ] 
             });
     
             return res.json(pessoa);
