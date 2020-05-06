@@ -27,6 +27,7 @@ routes.delete('/pessoa', PessoaController.removerPessoa);
 routes.get('/pessoa/verifica-email', PessoaController.verificaEmailUnico);
 routes.get('/pessoa/get-equipes-pessoa', PessoaController.getEquipesPessoa);
 routes.get('/pessoa/get-atividades-pessoa', PessoaController.getAtividadesPessoa);
+routes.get('/pessoa/get-pessoa', PessoaController.getPessoaByCdAmazon);
 routes.get('/pessoa/get-pessoa-email', PessoaController.getPessoaByEmail);
 
 routes.get('/sprint', SprintController.getSprints);

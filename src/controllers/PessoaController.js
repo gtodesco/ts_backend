@@ -48,6 +48,26 @@ module.exports = {
         }
     },
 
+    async getPessoaByCdAmazon(req, res) {
+        try {
+            const {
+                cd_amazon
+            } = req.query;
+    
+            const pessoa = await Pessoa.findAll({
+                where: { cd_amazon },
+            });
+    
+            return res.json(pessoa);
+
+        } catch(e) {
+            return res.json({
+                msg: 'Não foi possível retornar a pessoa.',
+                status: false
+            });
+        }
+    },
+
     async criarPessoa(req, res) {
         try {
             const {
