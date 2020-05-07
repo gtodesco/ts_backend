@@ -25,7 +25,7 @@ module.exports = {
         try {
             const {
                 email
-            } = req.body;
+            } = req.query;
     
             const pessoa = await Pessoa.findAll({
                 where: { email },

@@ -131,14 +131,15 @@ module.exports = {
     async getPessoasEquipe(req, res) {
         const {
             equipe_id
-        } = req.body;
+        } = req.query;
 
         const equipe = await Equipe.findByPk(equipe_id, {
             include: {
                 association: 'pessoas',
-                attributes: ['id', 'nome'],
+                attributes: ['id', 'nome', 'email', 'cd_amazon'],
                 through: { 
-                    attributes: []
+                    as: 'equipes_pessoas',
+                    attributes: ['sn_scrummaster']
                 }                    
             }
         });
