@@ -11,11 +11,13 @@ module.exports = {
     async criarTipoAtividade(req, res) {
         try {
             const {
-                descricao
+                descricao,
+                color
             } = req.body;
 
             const tipoAtividade = await TipoAtividade.create({
-                descricao
+                descricao,
+                color
             });
 
             return res.json({
@@ -36,11 +38,13 @@ module.exports = {
         try {
             const {
                 id,
-                descricao
+                descricao,
+                color
             } = req.body;
     
             const newTipoAtividade = await TipoAtividade.update({
-                descricao
+                descricao,
+                color
             },
             {
                 where: { id }
