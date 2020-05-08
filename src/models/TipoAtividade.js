@@ -12,6 +12,11 @@ class TipoAtividade extends Model {
         })
     }
 
+    static associate(models) {
+        this.belongsTo(models.Equipe, {foreignKey: 'equipe_id', as: 'equipe'});
+    }
+
 }
+
 
 module.exports = TipoAtividade;

@@ -64,7 +64,7 @@ routes.delete('/observacao', ObservacaoController.removerObservacao);
 
 routes.get('/status', StatusController.getStatus);
 
-routes.get('/tipo-atividade', TipoAtividadeController.getTipoAtividades);
+routes.get('/tipo-atividade', TipoAtividadeController.getTipoAtividadesEquipe);
 routes.post('/tipo-atividade', TipoAtividadeController.criarTipoAtividade);
 routes.put('/tipo-atividade', TipoAtividadeController.alterarTipoAtividade);
 routes.delete('/tipo-atividade', TipoAtividadeController.removerTipoAtividade);

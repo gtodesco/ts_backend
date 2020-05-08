@@ -18,6 +18,7 @@ class Equipe extends Model {
         this.belongsToMany(models.Pessoa, {foreignKey: 'equipe_id', through: EquipesPessoas, as: 'pessoas'});
         this.hasMany(models.Sprint, {foreignKey: 'equipe_id', as: 'sprints'});
         this.hasMany(models.Atividade, {foreignKey: 'equipe_id', as: 'atividades'});
+        this.hasMany(models.TipoAtividade, {foreignKey: 'equipe_id', as: 'tipo_atividade'});
     }
 
 }

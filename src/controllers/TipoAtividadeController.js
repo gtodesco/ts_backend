@@ -2,20 +2,26 @@ const TipoAtividade = require('../models/TipoAtividade');
 
 module.exports = {
 
-    async getTipoAtividades(req, res) {
-        const tipoAtividades = await TipoAtividade.findAll();
+    async getTipoAtividadesEquipe(req, res) {
+        const { equipe_id } = req.query;
 
-        return res.json(tipoAtividades);
+        const tiposAtividades = await TipoAtividade.findAll({
+            where: { equipe_id }
+        });
+
+        return res.json(tiposAtividades);
     },
 
     async criarTipoAtividade(req, res) {
         try {
             const {
+                equipe_id,
                 descricao,
                 color
             } = req.body;
 
             const tipoAtividade = await TipoAtividade.create({
+                equipe_id,
                 descricao,
                 color
             });
@@ -38,11 +44,13 @@ module.exports = {
         try {
             const {
                 id,
+                equipe_id,
                 descricao,
                 color
             } = req.body;
     
             const newTipoAtividade = await TipoAtividade.update({
+                equipe_id,
                 descricao,
                 color
             },
