@@ -18,14 +18,24 @@ module.exports = {
     },
 
     async getAtividadesEquipeSemSprint(req, res) {
-        const { equipe_id } = req.query;
+        const { equipe_id, tipo_id } = req.query;
+
+        let objWhere = {
+            equipe_id,
+            sprint_id: null
+        }
+
+        // Se informou tipo de atividade, filtra por ele também
+        if (tipo_id != null) {
+            objWhere['tipo_id'] = tipo_id;
+        }
 
         const atividades = await Atividade.findAll({
             include: [
                 { association: 'status' },
                 { association: 'tipos_atividade' }
             ],
-            where: { equipe_id, sprint_id: null }
+            where: objWhere
         });
 
         return res.json(atividades);
