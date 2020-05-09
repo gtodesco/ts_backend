@@ -6,7 +6,10 @@ module.exports = {
         const { equipe_id } = req.query;
 
         const tiposAtividades = await TipoAtividade.findAll({
-            where: { equipe_id }
+            where: { equipe_id },
+            order: [
+                ['descricao', 'ASC'],
+            ] 
         });
 
         return res.json(tiposAtividades);
