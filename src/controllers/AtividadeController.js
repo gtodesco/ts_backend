@@ -4,7 +4,7 @@ const Pessoa = require('../models/Pessoa');
 module.exports = {
 
     async getAtividadesEquipe(req, res) {
-        const { equipe_id } = req.body;
+        const { equipe_id } = req.query;
 
         const atividades = await Atividade.findAll({
             include: [
@@ -18,7 +18,7 @@ module.exports = {
     },
 
     async getAtividadesEquipeSemSprint(req, res) {
-        const { equipe_id } = req.body;
+        const { equipe_id } = req.query;
 
         const atividades = await Atividade.findAll({
             include: [
@@ -32,7 +32,7 @@ module.exports = {
     },
 
     async getAtividadesSprint(req, res) {
-        const { sprint_id } = req.body;
+        const { sprint_id } = req.query;
 
         const atividades = await Atividade.findAll({
             include: [
