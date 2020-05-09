@@ -54,6 +54,7 @@ module.exports = {
                 status_id,
                 titulo,
                 descricao,
+                prioridade,
                 horas_previsto,
                 horas_realizado
             } = req.body;
@@ -65,6 +66,7 @@ module.exports = {
                 status_id,
                 titulo,
                 descricao,
+                prioridade,
                 horas_previsto,
                 horas_realizado
             });
@@ -93,6 +95,7 @@ module.exports = {
                 status_id,
                 titulo,
                 descricao,
+                prioridade,
                 horas_previsto,
                 horas_realizado
             } = req.body;
@@ -104,6 +107,7 @@ module.exports = {
                 status_id,
                 titulo,
                 descricao,
+                prioridade,
                 horas_previsto,
                 horas_realizado
             },

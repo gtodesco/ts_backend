@@ -6,6 +6,7 @@ class Atividade extends Model {
         super.init({
             titulo: DataTypes.STRING,
             descricao: DataTypes.STRING,
+            prioridade: DataTypes.INTEGER,
             horas_previsto: DataTypes.TIME,
             horas_realizado: DataTypes.TIME,
         }, {
