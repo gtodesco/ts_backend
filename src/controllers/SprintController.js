@@ -4,10 +4,14 @@ module.exports = {
 
     async getSprints(req, res) {
 
-        const { equipe_id } = req.body;
+        const { equipe_id } = req.query;
 
         const sprints = await Sprint.findAll({
-            where: { equipe_id }
+            where: { equipe_id },
+            order: [
+                ['sn_ativa', 'DESC'],
+                ['dt_fim', 'DESC']
+            ]
         });
 
         return res.json(sprints);
