@@ -35,7 +35,10 @@ module.exports = {
                 { association: 'status' },
                 { association: 'tipos_atividade' }
             ],
-            where: objWhere
+            where: objWhere,
+            order: [
+                ['prioridade', 'DESC'],
+            ] 
         });
 
         return res.json(atividades);
