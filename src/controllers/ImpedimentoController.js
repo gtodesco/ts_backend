@@ -3,9 +3,12 @@ const Impedimento = require('../models/Impedimento');
 module.exports = {
 
     async getImpedimentosSprint(req, res) {
-        const { sprint_id } = req.body;
+        const { sprint_id } = req.query;
 
         const impedimentos = await Impedimento.findAll({
+            include: {
+                association: 'pessoa',             
+            },
             where: { sprint_id }
         });
 
