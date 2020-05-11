@@ -19,6 +19,25 @@ module.exports = {
 
     async criarSprint(req, res) {
         try {
+
+            // Verifica se existe uma sprint ativa. Se existir, encerra ela e cadastra a nova
+            const sprint_ativa = await Sprint.findAll({
+                where: {
+                    sn_ativa: true
+                }
+            });
+
+            if (sprint_ativa.length > 0) {
+                await Sprint.update({
+                    sn_ativa: false,
+                },
+                {
+                    where: {
+                        id: sprint_ativa[0].id
+                    }
+                });
+            }
+
             const {
                 equipe_id,
                 numero,
