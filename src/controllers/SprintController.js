@@ -17,6 +17,14 @@ module.exports = {
         return res.json(sprints);
     },
 
+    async getSprintAtiva(req, res) {
+        const sprint = await Sprint.findAll({
+            where: { sn_ativa: true },
+        });
+
+        return res.json(sprint);
+    },
+
     async criarSprint(req, res) {
         try {
 

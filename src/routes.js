@@ -34,6 +34,7 @@ routes.get('/sprint', SprintController.getSprints);
 routes.post('/sprint', SprintController.criarSprint);
 routes.put('/sprint', SprintController.alterarSprint);
 routes.delete('/sprint', SprintController.removerSprint);
+routes.get('/sprint-ativa', SprintController.getSprintAtiva);
 
 routes.get('/atividade/get-atividade-equipe', AtividadeController.getAtividadesEquipe);
 routes.get('/atividade/get-atividade-equipe-sem-sprint', AtividadeController.getAtividadesEquipeSemSprint);
