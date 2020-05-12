@@ -1,4 +1,5 @@
 const Sprint = require('../models/Sprint');
+const Retrospectiva = require('../models/Retrospectiva');
 
 module.exports = {
 
@@ -60,6 +61,14 @@ module.exports = {
                 dt_inicio,
                 dt_fim,
                 sn_ativa
+            });
+
+            // Cria retrospectiva com informações vazias para a sprint
+            await Retrospectiva.create({
+                sprint_id: sprint.id,
+                start: '',
+                stop: '',
+                continuar: ''
             });
 
             return res.json({
