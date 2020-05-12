@@ -3,7 +3,7 @@ const Retrospectiva = require('../models/Retrospectiva');
 module.exports = {
 
     async getRetrospectivasSprint(req, res) {
-        const { sprint_id } = req.body;
+        const { sprint_id } = req.query;
 
         const retrospectivas = await Retrospectiva.findAll({
             where: { sprint_id }
