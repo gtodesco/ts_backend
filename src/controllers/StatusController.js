@@ -20,7 +20,14 @@ module.exports = {
             // Busca as atividades
             const atividades = await Atividade.findAll({
                 include: [
-                    { association: 'tipos_atividade' }
+                    { association: 'tipos_atividade' },
+                    {
+                        association: 'pessoas',
+                        attributes: ['id', 'nome'],
+                        through: { 
+                            attributes: []
+                        } 
+                    }  
                 ],
                 where: { sprint_id },
                 order: [

@@ -33,7 +33,14 @@ module.exports = {
         const atividades = await Atividade.findAll({
             include: [
                 { association: 'status' },
-                { association: 'tipos_atividade' }
+                { association: 'tipos_atividade' },
+                {
+                    association: 'pessoas',
+                    attributes: ['id', 'nome'],
+                    through: { 
+                        attributes: []
+                    } 
+                }  
             ],
             where: objWhere,
             order: [
