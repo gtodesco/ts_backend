@@ -19,8 +19,16 @@ module.exports = {
     },
 
     async getSprintAtiva(req, res) {
+
+        const {
+            equipe_id
+        } = req.query;
+
         const sprint = await Sprint.findAll({
-            where: { sn_ativa: true },
+            where: {
+                equipe_id, 
+                sn_ativa: true 
+            },
         });
 
         return res.json(sprint);
