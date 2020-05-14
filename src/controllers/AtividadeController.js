@@ -92,11 +92,10 @@ module.exports = {
                 horas_realizado
             });
 
-            // Adiciona pessoas na atividade
-            pessoas.forEach(async (pessoa_id) => {
-                const pessoaAdd = await Pessoa.findByPk(pessoa_id);
+            for (i = 0; i < pessoas.length; i++) {
+                let pessoaAdd = await Pessoa.findByPk(pessoas[i]);
                 await atividade.addPessoa(pessoaAdd);
-            });
+            }
 
             return res.json({
                 msg: 'Atividade cadastrada com sucesso!', 
