@@ -167,7 +167,17 @@ module.exports = {
 
                 // pessoas: array de integers
                 for (i = 0; i < pessoas.length; i++) {
-                    let pessoaAdd = await Pessoa.findByPk(pessoas[i]);
+
+                    let pessoaFind;
+
+                    if (typeof pessoas[i] == 'object') {
+                        pessoaFind = pessoas[i].id;
+                    }
+                    else {
+                        pessoaFind = pessoas[i];
+                    }
+
+                    let pessoaAdd = await Pessoa.findByPk(pessoaFind);
                     await atividade_pessoas.addPessoa(pessoaAdd);
                 }
             }
