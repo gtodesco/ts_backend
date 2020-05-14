@@ -76,7 +76,8 @@ module.exports = {
                 descricao,
                 prioridade,
                 horas_previsto,
-                horas_realizado
+                horas_realizado,
+                pessoas
             } = req.body;
     
             const atividade = await Atividade.create({
@@ -90,7 +91,13 @@ module.exports = {
                 horas_previsto,
                 horas_realizado
             });
-    
+
+            // Adiciona pessoas na atividade
+            pessoas.forEach(async (pessoa_id) => {
+                const pessoaAdd = await Pessoa.findByPk(pessoa_id);
+                await atividade.addPessoa(pessoaAdd);
+            });
+
             return res.json({
                 msg: 'Atividade cadastrada com sucesso!', 
                 status: true
@@ -117,7 +124,8 @@ module.exports = {
                 descricao,
                 prioridade,
                 horas_previsto,
-                horas_realizado
+                horas_realizado,
+                pessoas
             } = req.body;
     
             const newAtividade = await Atividade.update({
@@ -134,7 +142,32 @@ module.exports = {
             {
                 where: { id }
             });
-    
+
+            // Busca as pessoas já cadastradas da atividade
+            const atividade_pessoas = await Atividade.findByPk(id, {
+                include: {
+                    association: 'pessoas',
+                },
+            });
+
+            const pessoas_atual = atividade_pessoas.pessoas;
+
+            /**
+             * Remove todas as pessoas atuais da atividade e adiciona novamente
+             */
+
+            // pessoas_atual: array de objetos
+            for (i = 0; i < pessoas_atual.length; i++) {
+                let pessoaRemove = await Pessoa.findByPk(pessoas_atual[i].id);
+                await atividade_pessoas.removePessoa(pessoaRemove);
+            }
+
+            // pessoas: array de integers
+            for (i = 0; i < pessoas.length; i++) {
+                let pessoaAdd = await Pessoa.findByPk(pessoas[i]);
+                await atividade_pessoas.addPessoa(pessoaAdd);
+            }
+
             return res.json({
                 msg: 'Atividade editada com sucesso!', 
                 status: true
