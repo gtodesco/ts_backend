@@ -143,29 +143,33 @@ module.exports = {
                 where: { id }
             });
 
-            // Busca as pessoas já cadastradas da atividade
-            const atividade_pessoas = await Atividade.findByPk(id, {
-                include: {
-                    association: 'pessoas',
-                },
-            });
+            // Irá alterar pessoas apenas se o valor for enviado
+            if (pessoas) {
 
-            const pessoas_atual = atividade_pessoas.pessoas;
+                // Busca as pessoas já cadastradas da atividade
+                const atividade_pessoas = await Atividade.findByPk(id, {
+                    include: {
+                        association: 'pessoas',
+                    },
+                });
 
-            /**
-             * Remove todas as pessoas atuais da atividade e adiciona novamente
-             */
+                const pessoas_atual = atividade_pessoas.pessoas;
 
-            // pessoas_atual: array de objetos
-            for (i = 0; i < pessoas_atual.length; i++) {
-                let pessoaRemove = await Pessoa.findByPk(pessoas_atual[i].id);
-                await atividade_pessoas.removePessoa(pessoaRemove);
-            }
+                /**
+                 * Remove todas as pessoas atuais da atividade e adiciona novamente
+                 */
 
-            // pessoas: array de integers
-            for (i = 0; i < pessoas.length; i++) {
-                let pessoaAdd = await Pessoa.findByPk(pessoas[i]);
-                await atividade_pessoas.addPessoa(pessoaAdd);
+                // pessoas_atual: array de objetos
+                for (i = 0; i < pessoas_atual.length; i++) {
+                    let pessoaRemove = await Pessoa.findByPk(pessoas_atual[i].id);
+                    await atividade_pessoas.removePessoa(pessoaRemove);
+                }
+
+                // pessoas: array de integers
+                for (i = 0; i < pessoas.length; i++) {
+                    let pessoaAdd = await Pessoa.findByPk(pessoas[i]);
+                    await atividade_pessoas.addPessoa(pessoaAdd);
+                }
             }
 
             return res.json({
