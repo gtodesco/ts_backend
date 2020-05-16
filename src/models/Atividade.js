@@ -9,6 +9,7 @@ class Atividade extends Model {
             prioridade: DataTypes.INTEGER,
             horas_previsto: DataTypes.TIME,
             horas_realizado: DataTypes.TIME,
+            dt_conclusao: DataTypes.DATEONLY,
         }, {
             sequelize
         })

@@ -77,6 +77,7 @@ module.exports = {
                 prioridade,
                 horas_previsto,
                 horas_realizado,
+                dt_conclusao,
                 pessoas
             } = req.body;
     
@@ -89,7 +90,8 @@ module.exports = {
                 descricao,
                 prioridade,
                 horas_previsto,
-                horas_realizado
+                horas_realizado,
+                dt_conclusao
             });
 
             for (i = 0; i < pessoas.length; i++) {
@@ -124,6 +126,7 @@ module.exports = {
                 prioridade,
                 horas_previsto,
                 horas_realizado,
+                dt_conclusao,
                 pessoas
             } = req.body;
     
@@ -136,7 +139,8 @@ module.exports = {
                 descricao,
                 prioridade,
                 horas_previsto,
-                horas_realizado
+                horas_realizado,
+                dt_conclusao
             },
             {
                 where: { id }
