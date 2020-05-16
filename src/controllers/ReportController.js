@@ -18,18 +18,18 @@ module.exports = {
         let qtd_dias_sprint = dt_fim_sprint.diff(dt_inicio_sprint, "days") + 1; // Esse + 1 define se a sprint irá durar até o fim do último dia ou não
         
         // Monta as labels de datas que irão abaixo do gráfico
-        let arrLabels = [];
+        let arr_labels = [];
         for (i = 0; i < qtd_dias_sprint; i++) {
             let dia = moment(dt_inicio_sprint).add(i, 'd');
 
             // Desconsidera finais de semana.
             if (dia.isoWeekday() != 6 && dia.isoWeekday() != 7) {
-                arrLabels.push(dia.format('DD/MM'));
+                arr_labels.push(dia.format('DD/MM'));
             }
         }
 
         // Define a quantidade de dias da sprint de acordo com a quantidade de datas que sobraram ao retirar os finais de semana
-        qtd_dias_sprint = arrLabels.length;
+        qtd_dias_sprint = arr_labels.length;
         // --------------------------------------------------------------------
 
         // Query que busca o total de horas da sprint agrupando as atividades e somando as horas previstas
@@ -109,7 +109,7 @@ module.exports = {
                 }
 
                 // Se a data de conclusão da atividade bater com alguma data da sprint, pega essa posição da data da sprint e atualiza as horas restantes
-                if (dt_conclusao.format('DD/MM') == arrLabels[i + 1]) {
+                if (dt_conclusao.format('DD/MM') == arr_labels[i + 1]) {
                     const arr_horas_previstas = atividades[j].horas_previsto.split(':');
                     const horas_previstas = `${arr_horas_previstas[0]}.${arr_horas_previstas[1]}`;
                     horas_concluidas_dia = horas_concluidas_dia + parseInt(horas_previstas);
@@ -121,7 +121,7 @@ module.exports = {
         // --------------------------------------------------------------------
         
         const retorno = {
-            arrLabels,
+            arr_labels,
             arr_horas_ideial_por_dia,
             arr_horas_por_dia
         };
