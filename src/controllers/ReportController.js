@@ -17,7 +17,7 @@ module.exports = {
             let arrImpedimentos = await Impedimento.findAll({
                 attributes: [
                     'id', 
-                    [literal('TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(`horas`)) MOD (TIME_TO_SEC("838:59:59")+1)), "%H:%i")'), 'total']
+                    [literal('TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(`horas`)) MOD (TIME_TO_SEC("838:59:59")+1)), "%H.%i")'), 'total']
                 ],
                 where: { sprint_id },
                 include: {
