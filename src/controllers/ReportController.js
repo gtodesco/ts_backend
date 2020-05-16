@@ -116,8 +116,6 @@ module.exports = {
                 }
             }
 
-
-// teste
             horas_restantes_atual = (horas_restantes_atual - horas_concluidas_dia).toFixed(2);
         }
         // --------------------------------------------------------------------
