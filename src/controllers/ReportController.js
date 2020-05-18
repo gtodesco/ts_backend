@@ -75,7 +75,7 @@ module.exports = {
         // --------------------------------------------------------------------
 
         // Define a data atual ------------------------------------------------
-        let hoje = moment();
+        let hoje = moment().local();
 
         // Vai subtraindo até a data sair do final de semana. Irá para o primeiro dia antes do começo do final de semana.
         while(hoje.isoWeekday() == 6 || hoje.isoWeekday() == 7) {
@@ -86,7 +86,7 @@ module.exports = {
         // --------------------------------------------------------------------
 
         // Define a quantidade de dias que se passaram até a data atual -------
-        let qtd_dias_passados = moment(hoje).diff(dt_inicio_sprint, "days") - 1; // Esse -1 faz com que o último dia passado seja o dia atual, e não o próximo
+        let qtd_dias_passados = moment(hoje).diff(dt_inicio_sprint, "days") + 1; // Esse -1 faz com que o último dia passado seja o dia atual, e não o próximo
 
         for (i = 0; i < qtd_dias_passados; i++) {
             let dia = moment(dt_inicio_sprint).add(i, 'd');
