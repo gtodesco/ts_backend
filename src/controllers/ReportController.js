@@ -32,6 +32,23 @@ module.exports = {
         qtd_dias_sprint = arr_labels.length;
         // --------------------------------------------------------------------
 
+        // Verifica se existem atividades na sprint ---------------------------
+
+        let qtd_atividades = await Atividade.count({
+            where: { sprint_id },
+        });
+
+        // Se não houver atividades, retorna as labels e as horas vazias
+        if (qtd_atividades == 0) {
+            return res.json({
+                arr_labels,
+                arr_horas_ideial_por_dia: [],
+                arr_horas_por_dia: []
+            });
+        }
+
+        // --------------------------------------------------------------------
+
         // Query que busca o total de horas da sprint agrupando as atividades e somando as horas previstas
         let total_horas_sprint = await Atividade.findAll({
             attributes: [
@@ -39,7 +56,7 @@ module.exports = {
             ],
             where: { sprint_id },
             group: ['sprint_id'],
-        });;
+        });
 
         total_horas_sprint = total_horas_sprint[0].get('total_horas_sprint');
         // --------------------------------------------------------------------
