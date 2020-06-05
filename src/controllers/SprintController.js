@@ -60,7 +60,8 @@ module.exports = {
                 numero,
                 dt_inicio,
                 dt_fim,
-                sn_ativa
+                sn_ativa,
+                objetivo
             } = req.body;
     
             const sprint = await Sprint.create({
@@ -68,7 +69,8 @@ module.exports = {
                 numero,
                 dt_inicio,
                 dt_fim,
-                sn_ativa
+                sn_ativa,
+                objetivo
             });
 
             // Cria retrospectiva com informações vazias para a sprint
@@ -101,7 +103,8 @@ module.exports = {
                 numero,
                 dt_inicio,
                 dt_fim,
-                sn_ativa
+                sn_ativa,
+                objetivo
             } = req.body;
     
             const newSprint = await Sprint.update({
@@ -109,7 +112,8 @@ module.exports = {
                 numero,
                 dt_inicio,
                 dt_fim,
-                sn_ativa
+                sn_ativa,
+                objetivo
             },
             {
                 where: { id }

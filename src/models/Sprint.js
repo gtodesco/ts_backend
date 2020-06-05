@@ -8,6 +8,7 @@ class Sprint extends Model {
             dt_inicio: DataTypes.DATEONLY,
             dt_fim: DataTypes.DATEONLY,
             sn_ativa: DataTypes.BOOLEAN,
+            objetivo: DataTypes.STRING,
         }, {
             sequelize
         })
