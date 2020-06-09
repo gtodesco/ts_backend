@@ -5,7 +5,6 @@ const SprintController = require('./controllers/SprintController');
 const AtividadeController = require('./controllers/AtividadeController');
 const ImpedimentoController = require('./controllers/ImpedimentoController');
 const RetrospectivaController = require('./controllers/RetrospectivaController');
-const ObservacaoController = require('./controllers/ObservacaoController');
 const StatusController = require('./controllers/StatusController');
 const TipoAtividadeController = require('./controllers/TipoAtividadeController');
 const ReportController = require('./controllers/ReportController');
@@ -58,11 +57,6 @@ routes.get('/retrospectiva', RetrospectivaController.getRetrospectivasSprint);
 routes.post('/retrospectiva', RetrospectivaController.criarRetrospectiva);
 routes.put('/retrospectiva', RetrospectivaController.alterarRetrospectiva);
 routes.delete('/retrospectiva', RetrospectivaController.removerRetrospectiva);
-
-routes.get('/observacao', ObservacaoController.getObservacoesAtividade);
-routes.post('/observacao', ObservacaoController.criarObservacao);
-routes.put('/observacao', ObservacaoController.alterarObservacao);
-routes.delete('/observacao', ObservacaoController.removerObservacao);
 
 routes.get('/status', StatusController.getStatus);
 routes.get('/status-atividades', StatusController.getStatusAtividades);
