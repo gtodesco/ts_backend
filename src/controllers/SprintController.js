@@ -37,10 +37,20 @@ module.exports = {
     async criarSprint(req, res) {
         try {
 
+            const {
+                equipe_id,
+                numero,
+                dt_inicio,
+                dt_fim,
+                sn_ativa,
+                objetivo
+            } = req.body;
+            
             // Verifica se existe uma sprint ativa. Se existir, encerra ela e cadastra a nova
             const sprint_ativa = await Sprint.findAll({
                 where: {
-                    sn_ativa: true
+                    sn_ativa: true,
+                    equipe_id
                 }
             });
 
@@ -54,16 +64,7 @@ module.exports = {
                     }
                 });
             }
-
-            const {
-                equipe_id,
-                numero,
-                dt_inicio,
-                dt_fim,
-                sn_ativa,
-                objetivo
-            } = req.body;
-    
+            
             const sprint = await Sprint.create({
                 equipe_id,
                 numero,
